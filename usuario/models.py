@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(username, email, password)
         user.is_superuser = True
         user.is_staff = True
+        user.save()
         return user 
 
 class User(AbstractBaseUser, PermissionsMixin):
