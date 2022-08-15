@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from usuario.models import User
+from usuario.models import User, Endereco
 from django.contrib.auth.models import Group
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -63,3 +63,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+
+
+class EnderecoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Endereco
+        fields= ('__all__')
