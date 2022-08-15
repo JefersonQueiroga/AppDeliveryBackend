@@ -39,3 +39,11 @@ class ProdutoListDetailViewSet(generics.RetrieveAPIView):
     
     def get_queryset(self):
         return Produto.objects.filter(id=self.kwargs['id'])
+    
+class ProdutoListByCategoryViewSet(generics.ListAPIView):
+    serializer_class = ProdutoSerializer
+
+    def get_queryset(self):
+        category = Categoria.objects.get(pk=self.kwargs['category_id'])
+        queryset = Produto.objects.filter(categoria = category)
+        return queryset
