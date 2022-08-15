@@ -1,14 +1,19 @@
 from rest_framework import generics
 from pedido.models import Loja, Pedido, Produto, Categoria
 from .serializers import * 
+from rest_framework import permissions
 
 class ProdutoCreateViewSet(generics.CreateAPIView):
-    queryset = Produto.objects.all()
     serializer_class = ProdutoSerializer
 
 class PedidoCreateViewSet(generics.CreateAPIView):
-    queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        request.data["user"]= request.user.pk
+        return self.create(request, *args, **kwargs)
+
 
 class CategoriaCreateViewSet(generics.CreateAPIView):
     queryset = Categoria.objects.all()

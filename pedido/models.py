@@ -1,4 +1,5 @@
 from django.db import models
+from usuario.models import User
 
 class Loja(models.Model):
     nome = models.CharField(max_length=150)
@@ -21,6 +22,7 @@ class Pedido(models.Model):
     valor_total = models.DecimalField(max_digits=6, decimal_places=2)
     produtos = models.ManyToManyField(Produto)
     loja = models.ForeignKey(Loja,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
 
 
