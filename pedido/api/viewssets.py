@@ -31,3 +31,6 @@ class PedidoListViewSet(generics.ListAPIView):
 
         queryset = Pedido.objects.filter(loja = loja)
         return queryset
+
+class LojaCreateViewSet(generics.CreateAPIView):
+    serializer_class = LojaSerializer
