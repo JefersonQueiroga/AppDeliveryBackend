@@ -1,3 +1,4 @@
+from cgitb import lookup
 from rest_framework import generics
 from pedido.models import Loja, Pedido, Produto, Categoria
 from .serializers import * 
@@ -31,3 +32,10 @@ class PedidoListViewSet(generics.ListAPIView):
 
         queryset = Pedido.objects.filter(loja = loja)
         return queryset
+
+class ProdutoListDetailViewSet(generics.RetrieveAPIView):
+    serializer_class = ProdutoSerializer
+    lookup_field = 'id'
+    
+    def get_queryset(self):
+        return Produto.objects.filter(id=self.kwargs['id'])
