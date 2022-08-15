@@ -20,3 +20,6 @@ class RegisterViewSet(generics.GenericAPIView):
         serializer.save()
         user_data = serializer.data
         return Response(user_data, status=status.HTTP_201_CREATED)
+
+class EnderecoCreateViewSet(generics.CreateAPIView):
+    serializer_class =EnderecoSerializer

@@ -8,5 +8,4 @@ urlpatterns = [
     path("cadastrar_loja/", LojaCreateViewSet.as_view(), name="cadastrar_loja"),
     path("cadastrar_produto/", ProdutoCreateViewSet.as_view(), name="criar_produto"),
     path("cadastrar_pedido/", PedidoCreateViewSet.as_view(), name="criar_pedido"),
-
 ]
