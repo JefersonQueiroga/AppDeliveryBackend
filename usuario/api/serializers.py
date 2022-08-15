@@ -44,3 +44,22 @@ class UserSerializer(serializers.ModelSerializer):
             'refresh': user.tokens()['refresh'],
             'access': user.tokens()['access']
         }
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
+
+    default_error_messages = {
+        'username': 'O nickname do usuário podem conter apenas letras (a-z) e números (0-9)'}
+
+    class Meta:
+        model = User
+        fields = ['email', 'username','password','phone']
+
+    def validate(self, attrs):
+        email = attrs.get('email', '')
+        username = attrs.get('username', '')
+        return attrs
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
