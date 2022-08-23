@@ -1,9 +1,9 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin)
 from rest_framework_simplejwt.tokens import RefreshToken
 
-# Create your models here.
 class UserManager(BaseUserManager):
 
     def create_user(self, username,email,password=None,phone=''):
@@ -46,3 +46,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_token_access(self):
         refresh = RefreshToken.for_user(self)
         return str(refresh.access_token)
+
+
+class Endereco(models.Model):
+    cep = models.CharField(max_length=10)
+    estado = models.CharField(max_length=255)
+    cidade = models.CharField(max_length=255)
+    rua = models.CharField(max_length=255)
+    numero = models.IntegerField()
+    complemento = models.TextField(null=True)
+    bairro = models.CharField(max_length=255)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    TIPO_CHOICES = (
+        ("Casa","Casa"),
+        ("Trabalho", "Trabalho"),
+    )
+    tipo = models.CharField(max_length=255, choices=TIPO_CHOICES)

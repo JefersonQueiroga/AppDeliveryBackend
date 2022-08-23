@@ -10,7 +10,8 @@ class LojaSerializer(serializers.ModelSerializer):
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
-        fields = ('__all__')
+        fields = ('nome', 'valor', 'loja', 'categoria', 'exclusivo')
+
 
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
