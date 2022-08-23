@@ -10,7 +10,7 @@ class LojaSerializer(serializers.ModelSerializer):
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
-        fields = ('___all__')
+        fields = ('__all__')
 
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
