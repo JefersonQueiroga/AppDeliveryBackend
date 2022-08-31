@@ -16,6 +16,8 @@ class Produto(models.Model):
     loja = models.ForeignKey(Loja,on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     exclusivo = models.BooleanField(default=False)
+    descricao = models.TextField(null=True)
+    imagem = models.FileField(null=True)
 
 class Pedido(models.Model):
     data = models.DateTimeField(auto_now_add=True)

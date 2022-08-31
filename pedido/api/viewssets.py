@@ -42,7 +42,7 @@ class LojaCreateViewSet(generics.CreateAPIView):
     serializer_class = LojaSerializer
 
 class ProdutoListDetailViewSet(generics.RetrieveAPIView):
-    serializer_class = ProdutoSerializer
+    serializer_class = ProdutoDetalheSerializer
     lookup_field = 'id'
     
     def get_queryset(self):
