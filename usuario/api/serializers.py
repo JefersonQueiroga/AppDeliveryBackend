@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model= Group
-        fields = ('id','name')
+        fields = ('id','name',)
 
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','email', 'password', 'username','tokens','groups']
+        fields = ['id','email', 'password', 'username','tokens','groups',]
 
     def validate(self, attrs):
         email = attrs.get('email', '')
